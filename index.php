@@ -7,18 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <title>Tapaper</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 </head>
 
 <body>
-    <header>
-        <div class="topheader">
-            <a href="index.php" class="headerlogo"><img src="images/LogoSample.jpg" alt="Tapaper logo"></a>
-            <a href="Login.php" class="loginbutton">Login</a>
-        </div>
-        <div  class="categoriescontainer">
-            Kategoria
-        </div>
-    </header>
+    <?php require("layout/header.php") ?>
+    <?php require("layout/footer.php") ?>
 </body>
 
 </html>
