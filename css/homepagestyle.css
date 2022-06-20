@@ -1,0 +1,35 @@
+.wallpaperscontainer{
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    width: min(100%, 85vw);
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 0.5vmin;
+    row-gap: 0.5vmin;
+}
+.wallpaperbox{
+    place-self: center;
+}
+.wallpaperbox a{
+    display: block;
+}
+.wallpaper{
+    display: block;
+    max-width: 200px; 
+    max-height: 150px;
+    object-fit: contain;
+}
+.wallpapercontainerheader{
+    text-align: center;
+    font-size: 2em;
+    margin: 2vh 0px;
+}
+
+
+
+
+
+
+

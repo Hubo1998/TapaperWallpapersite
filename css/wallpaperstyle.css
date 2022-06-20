@@ -1,0 +1,20 @@
+.wallpapercontainer{
+    display: flex;
+    justify-content: center;
+    margin:10px
+}
+.wallpaperbox{
+    display:flex;
+    flex-direction: column;
+    margin: 10px;
+}
+.wallpaperbox img{
+    
+    max-width: 300px;
+    max-height: 400px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+.wallpaperdescription{
+    margin: 10px;
+}
