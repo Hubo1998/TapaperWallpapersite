@@ -19,12 +19,12 @@
         </div>
 
         <div class="container">
-            <label for="login">Login</label>
-            <input type="text" name="login" placeholder="Username" required>
-            <label for="password">Password</label>
-            <input type="password" name="password" placeholder="Password" required>
+            <label for="login">Nazwa użytkownika</label>
+            <input type="text" name="login" placeholder="Nazwa użytkownika" required>
+            <label for="password">Hasło</label>
+            <input type="password" name="password" placeholder="Hasło" required>
 
-            <button type="submit">Login</button>
+            <button type="submit">Zaloguj</button>
         </div>
 
     </form>

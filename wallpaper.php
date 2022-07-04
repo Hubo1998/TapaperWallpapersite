@@ -16,7 +16,7 @@
     <div class="wallpapercontainer">
         <div class="wallpaperbox">
             <img src="images/dahlia1.jpg" alt="">
-            <button class="wallpaperbutton">Download</button>
+            <button class="wallpaperbutton">Pobierz</button>
         </div>
         <div class="wallpaperdescriptionbox">
             <div class="description"><b>Kategoria</b><p>Numer 2</p></div>

@@ -1,7 +1,8 @@
 .wallpapercontainer{
     display: flex;
     justify-content: center;
-    margin:10px
+    margin:10px;
+    
 }
 .wallpaperbox{
     display:flex;
