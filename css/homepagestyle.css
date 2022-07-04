@@ -7,7 +7,7 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     column-gap: 0.5vmin;
-    row-gap: 0.5vmin;
+    row-gap: 1vmin;
 }
 .wallpaperbox{
     place-self: center;
@@ -20,6 +20,7 @@
     max-width: 200px; 
     max-height: 150px;
     object-fit: contain;
+    box-shadow: 5px 5px 10px black ;
 }
 .wallpapercontainerheader{
     text-align: center;

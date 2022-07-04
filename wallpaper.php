@@ -16,13 +16,13 @@
     <div class="wallpapercontainer">
         <div class="wallpaperbox">
             <img src="images/dahlia1.jpg" alt="">
-            <button>Download</button>
+            <button class="wallpaperbutton">Download</button>
         </div>
-        <div class="wallpaperdescription">
-            <p>Category:Number 3</p>
-            <p>Title:Name</p>
-            <p>Resolution, size, Upload date</p>
-            <p>Description</p>
+        <div class="wallpaperdescriptionbox">
+            <div class="description"><b>Kategoria</b><p>Numer 2</p></div>
+            <div class="description"><b>Tytuł</b><p>Nazwa</p></div>
+            <div class="description"><p>1920x1080, 1.45MB, 20.06.2020</p></div>
+            <div class="description"><p>Opis</p></div>
         </div>
     </div>
 

@@ -5,8 +5,7 @@ form {border: 3px solid #f1f1f1;}
     margin: 24px 0 12px 0;
 }
 img.avatar{
-    width: 20%;
-    border-radius: 50%;
+    width: 15%;
 }
 .container{
     display: flex;
