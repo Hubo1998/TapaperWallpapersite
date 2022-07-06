@@ -21,6 +21,12 @@
     max-height: 150px;
     object-fit: contain;
     box-shadow: 5px 5px 10px black ;
+    transition: .5s;
+    border-radius: 15px;
+}
+.wallpaper:hover{
+    opacity: 0.75;
+    box-shadow: 8px 8px 12px black;
 }
 .wallpapercontainerheader{
     text-align: center;
@@ -28,6 +34,22 @@
     margin: 2vh 0px;
 }
 
+@media (max-width: 992px) 
+{
+    .wallpaperscontainer{
+        grid-template-columns: 1fr 1fr 1fr;
+        row-gap: 4vmin;
+    }
+    
+}
+
+@media (max-width: 768px) 
+{
+    .wallpaperscontainer{
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
 
 
 

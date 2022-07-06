@@ -53,6 +53,7 @@ body{
     width: 100%;
     height: 10vmin;
     background-color: #14A1D9;
+    overflow: hidden;
 }
 
 .category {
@@ -80,4 +81,13 @@ body{
     width: 100%;
     min-height: 7vmin;
     color: black;
+}
+
+
+@media (max-width: 992px) 
+{
+    .topheader{
+        height: 15vmin;
+    }
+
 }
