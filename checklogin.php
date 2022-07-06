@@ -1,9 +1,9 @@
 <?php
 session_start();
-$user = '';
-$host = '';
-$pass = '';
-$db = "";
+$user = 'gubabqczps_Hubo90';
+$host = 'localhost';
+$pass = 'bE6jmXu2V3@';
+$db = "gubabqczps_Tapaper";
 require_once("database/db.php");
 ?>
 <!DOCTYPE html>
@@ -18,9 +18,9 @@ require_once("database/db.php");
 <?php
 $login=$_POST['login'];
 $haslo=$_POST['password'];
-$haslozbazy=DBShortQuery("Select haslo from student where login='$login'");
+$haslozbazy=DBShortQuery("Select password from admin where login='$login'");
 
-if(md5($haslo)==$haslozbazy){
+if(hash('sha256',$haslo)==$haslozbazy){
     $_SESSION['login']='OK';
     header("Location: index.php");
 }else{

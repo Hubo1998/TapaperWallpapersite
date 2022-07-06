@@ -58,7 +58,7 @@
 		global $link;
 		$result = @mysqli_query($link,$query)  or die ("<br/>Zapytanie do bazy query nie jest poprawne.");			
 		//$rest = @mysqli_insert_id();
-	   	return $rest;		   
+	   	//return $rest;		   
 	}; 
 
 	$link = mysqli_connect($host, $user, $pass, $db);
