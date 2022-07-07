@@ -1,4 +1,7 @@
-<?php require_once("database/startfile.php"); ?>
+<?php 
+session_start();
+ob_start(); 
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -9,16 +12,13 @@
 </head>
 <body>
 <?php
-$login=$_POST['login'];
-$haslo=$_POST['password'];
-$haslozbazy=DBShortQuery("Select password from admin where login='$login'");
-
-if(hash('sha256',$haslo)==$haslozbazy){
-    $_SESSION['login']='OK';
+if($_SESSION['login']=='OK'){
+    $_SESSION['login']='NOTOK';
     header("Location: index.php");
 }else{
-    header("Location: Login.php?log=incorrect");
+    header("Location: Login.php");
 }
+    
 ?>
 </body>
 </html>

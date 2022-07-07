@@ -1,5 +1,15 @@
+<?php 
+require_once("database/startfile.php"); 
+$tapeta; //ściezka do pliku z bazy
+$kategoria=1; //kategoria z bazy
+$nazwa=2;//nazwa z bazy
+$rozdz=getimagesize($tapeta)[0]+' x '+getimagesize($tapeta)[1];
+$rozmiar=round(filesize("images/beach1.jpg") / 1024 / 1024,4) . 'MB';
+$data=5;//data dodania z bazy
+$opis=6; //opis z bazy
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
     <meta charset="UTF-8">

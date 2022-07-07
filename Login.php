@@ -1,5 +1,6 @@
+<?php require_once("database/startfile.php"); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
     <meta charset="UTF-8">
