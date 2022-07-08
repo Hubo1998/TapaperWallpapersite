@@ -14,50 +14,22 @@
 
 <body>
     <?php require("layout/header.php") ?>
-    <div class="wallpapercontainerheader">
-        Najnowsze tapety
-    </div>
+    <div class="wallpapercontainerheader">Najnowsze tapety</div>
     <div class="wallpaperscontainer">
-        <div class="wallpaperbox">
-            <a href="wallpaper.php">
-                <img src="images/dahlia1.jpg" alt="" class="wallpaper">
-            </a>
-        </div>
-        <div class="wallpaperbox">
-            <a href="wallpaper.php">
-                <img src="images/beach1.jpg" alt="" class="wallpaper">
-            </a>
-
-        </div>
-        <div class="wallpaperbox">
-            <a href="wallpaper.php">
-                <img src="images/dahlia1.jpg" alt="" class="wallpaper">
-            </a>
-
-        </div>
-        <div class="wallpaperbox">
-            <a href="wallpaper.php">
-                <img src="images/beach1.jpg" alt="" class="wallpaper">
-            </a>
-
-        </div>
-        <div class="wallpaperbox">
-            <a href="wallpaper.php">
-                <img src="images/beach1.jpg" alt="" class="wallpaper">
-            </a>
-
-        </div>
-
+    <?php
+            $data=DBArrayQuery("Select nazwapliku,idtapeta From tapeta ORDER BY datadodania DESC LIMIT 8");
+            foreach($data as $value){
+                echo "
+                <div class='wallpaperbox'>
+                    <a href='wallpaper.php?id=$value[1]'>
+                        <img src='images/$value[0]' alt='' class='wallpaper'>
+                    </a>
+                </div>";
+            }
+        ?>
     </div>
-    <div class="wallpapercontainerheader">
-        Tapety o najlepszej rozdzielczości
-    </div>
+    <div class="wallpapercontainerheader">Tapety o najlepszej rozdzielczości</div>
     <div class="wallpaperscontainer">
-        <div class="wallpaperbox">
-            <a href="wallpaper.php">
-                <img src="images/beach1.jpg" alt="" class="wallpaper">
-            </a>
-        </div>
 
     </div>
 

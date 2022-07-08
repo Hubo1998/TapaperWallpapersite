@@ -1,3 +1,7 @@
+<?php
+require_once("database/startfile.php");
+$data=DBArrayQuery("Select * from kategoria;");
+?>
 <header>
     <div class="topheader">
         <div>
@@ -18,11 +22,10 @@
         </div>
     </div>
     <div class="categoriescontainer">
-        <a href="/category.php" class="category">Kategoria</a>
-        <a href="/category.php" class="category">Kategoria</a>
-        <a href="/category.php" class="category">Kategoria</a>
-        <a href="/category.php" class="category">Kategoria</a>
-        <a href="/category.php" class="category">Kategoria</a>
-        <a href="/category.php" class="category">Kategoria</a>
+        <?php
+        foreach($data as $value){
+            echo "<a href='/category.php?id=$value[0]' class='category'>$value[1]</a>";
+        }
+        ?>
     </div>
 </header>

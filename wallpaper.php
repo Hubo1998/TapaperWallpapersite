@@ -1,12 +1,15 @@
 <?php 
-require_once("database/startfile.php"); 
-$tapeta; //ściezka do pliku z bazy
-$kategoria=1; //kategoria z bazy
-$nazwa=2;//nazwa z bazy
-$rozdz=getimagesize($tapeta)[0]+' x '+getimagesize($tapeta)[1];
-$rozmiar=round(filesize("images/beach1.jpg") / 1024 / 1024,4) . 'MB';
-$data=5;//data dodania z bazy
-$opis=6; //opis z bazy
+require_once("database/startfile.php");
+$idtapeta=$_GET['id'];
+$data=DBArrayQuery("Select tapeta.nazwapliku,kategoria.nazwa,tapeta.nazwa,tapeta.datadodania,tapeta.opis from tapeta,kategoria where tapeta.kategoria_idkategoria=kategoria.idkategoria AND idtapeta=$idtapeta;"); 
+$tapeta=$data[0][0]; //ściezka do pliku z bazy
+$kategoria=$data[0][1]; //kategoria z bazy
+$nazwa=$data[0][2];//nazwa z bazy
+$rozdzx=getimagesize("images/$tapeta")[0];
+$rozdzy=getimagesize("images/$tapeta")[1];
+$rozmiar=round(filesize("images/$tapeta") / 1024 / 1024,3) . 'MB';
+$datadodania=$data[0][3];//data dodania z bazy
+$opis=$data[0][4]; //opis z bazy
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -25,14 +28,14 @@ $opis=6; //opis z bazy
     <?php require("layout/header.php") ?>
     <div class="wallpapercontainer">
         <div class="wallpaperbox">
-            <img src="images/dahlia1.jpg" alt="">
+            <img src="images/<?php echo $tapeta;?>" alt="">
             <button class="wallpaperbutton">Pobierz</button>
         </div>
         <div class="wallpaperdescriptionbox">
-            <div class="description"><b>Kategoria</b><p>Numer 2</p></div>
-            <div class="description"><b>Tytuł</b><p>Nazwa</p></div>
-            <div class="description"><p>1920x1080, 1.45MB, 20.06.2020</p></div>
-            <div class="description"><p>Opis</p></div>
+            <div class="description"><b>Kategoria</b><p><?php echo $kategoria;?></p></div>
+            <div class="description"><b>Tytuł</b><p><?php echo $nazwa;?></p></div>
+            <div class="description"><p><?php echo $rozdzx;echo ' x ';echo $rozdzy;?>, <?php echo $rozmiar;?>, <?php echo $datadodania;?></p></div>
+            <div class="description"><p><?php echo $opis;?></p></div>
         </div>
     </div>
 

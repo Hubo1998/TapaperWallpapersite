@@ -1,4 +1,9 @@
-<?php require_once("database/startfile.php"); ?>
+<?php 
+require_once("database/startfile.php"); 
+$idkategoria=$_GET['id'];
+$nazwakategorii=DBArrayQuery("Select kategoria.nazwa from kategoria where kategoria.idkategoria=$idkategoria;");
+$tapetykategorii=DBArrayQuery("Select tapeta.nazwapliku from tapeta where kategoria_idkategoria=$idkategoria;");
+?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -15,39 +20,19 @@
 <body>
     <?php require("layout/header.php") ?>
     <div class="wallpapercontainerheader">
-        Kategoria
+        <?php echo $nazwakategorii[0][0];?>
     </div>
     <div class="wallpaperscontainer">
-        <div class="wallpaperbox">
-            <a href="wallpaper.php">
-                <img src="images/dahlia1.jpg" alt="" class="wallpaper">
-            </a>
-        </div>
-        <div class="wallpaperbox">
-            <a href="wallpaper.php">
-                <img src="images/beach1.jpg" alt="" class="wallpaper">
-            </a>
-
-        </div>
-        <div class="wallpaperbox">
-            <a href="wallpaper.php">
-                <img src="images/dahlia1.jpg" alt="" class="wallpaper">
-            </a>
-
-        </div>
-        <div class="wallpaperbox">
-            <a href="wallpaper.php">
-                <img src="images/beach1.jpg" alt="" class="wallpaper">
-            </a>
-
-        </div>
-        <div class="wallpaperbox">
-            <a href="wallpaper.php">
-                <img src="images/beach1.jpg" alt="" class="wallpaper">
-            </a>
-
-        </div>
-
+        <?php
+        foreach($tapetykategorii as $value){
+            echo "
+            <div class='wallpaperbox'>
+                <a href='wallpaper.php'>
+                    <img src='images/$value[0]' alt='' class='wallpaper'>
+                </a>
+            </div>";
+        }
+        ?>
     </div>
 
 
