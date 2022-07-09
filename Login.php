@@ -1,4 +1,3 @@
-<?php require_once("database/startfile.php"); ?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -12,7 +11,7 @@
 </head>
 
 <body>
-    <?php require("layout/header.php") ?>
+    <?php require __DIR__ . "/layout/header.php"; ?>
 
     <form action="checklogin.php" method="post">
         <div class="imgcontainer">
@@ -29,7 +28,7 @@
         </div>
 
     </form>
-    <?php require("layout/footer.php") ?>
+    <?php require __DIR__ . "/layout/footer.php"; ?>
 </body>
 
 </html>

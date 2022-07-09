@@ -1,4 +1,3 @@
-<?php require_once("database/startfile.php"); ?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -13,19 +12,19 @@
 </head>
 
 <body>
-    <?php require("layout/header.php") ?>
+    <?php require __DIR__ . "/layout/header.php"; ?>
     <div class="wallpapercontainerheader">Najnowsze tapety</div>
     <div class="wallpaperscontainer">
-    <?php
-            $data=DBArrayQuery("Select nazwapliku,idtapeta From tapeta ORDER BY datadodania DESC LIMIT 8");
-            foreach($data as $value){
-                echo "
+        <?php
+        $data = DBArrayQuery("Select nazwapliku,idtapeta From tapeta ORDER BY datadodania DESC LIMIT 8");
+        foreach ($data as $value) {
+            echo "
                 <div class='wallpaperbox'>
                     <a href='wallpaper.php?id=$value[1]'>
                         <img src='images/$value[0]' alt='' class='wallpaper'>
                     </a>
                 </div>";
-            }
+        }
         ?>
     </div>
     <div class="wallpapercontainerheader">Tapety o najlepszej rozdzielczości</div>
@@ -33,7 +32,7 @@
 
     </div>
 
-    <?php require("layout/footer.php") ?>
+    <?php require __DIR__ . "/layout/footer.php"; ?>
 </body>
 
 </html>

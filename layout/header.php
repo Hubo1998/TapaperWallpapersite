@@ -1,11 +1,11 @@
-<?php
-require_once("database/startfile.php");
+<?php 
+require __DIR__ . "../../functions/db.php";
 $data=DBArrayQuery("Select * from kategoria;");
 ?>
 <header>
     <div class="topheader">
         <div>
-            <a href="index.php" class="headerlogo"><img src="images/LogoSample.jpg" alt="Tapaper logo"></a>
+            <a href="/index.php" class="headerlogo"><img src="/images/LogoSample.jpg" alt="Tapaper logo"></a>
         </div>
         <div>
         <?php 
@@ -14,9 +14,9 @@ $data=DBArrayQuery("Select * from kategoria;");
         }
         
         if($_SESSION['login']=='OK'){
-            echo '<a href="Logout.php" class="loginbutton">Wyloguj</a>';
+            echo '<a href="/Logout.php" class="loginbutton">Wyloguj</a>';
         }else{
-            echo '<a href="Login.php" class="loginbutton">Zaloguj</a>';
+            echo '<a href="/Login.php" class="loginbutton">Zaloguj</a>';
         }
         ?>
         </div>

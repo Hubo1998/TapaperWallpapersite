@@ -1,16 +1,16 @@
-<?php 
-require_once("database/startfile.php");
-$idtapeta=$_GET['id'];
-$data=DBArrayQuery("Select tapeta.nazwapliku,kategoria.nazwa,tapeta.nazwa,tapeta.datadodania,tapeta.opis from tapeta,kategoria where tapeta.kategoria_idkategoria=kategoria.idkategoria AND idtapeta=$idtapeta;"); 
-$tapeta=$data[0][0]; //ściezka do pliku z bazy
-$kategoria=$data[0][1]; //kategoria z bazy
-$nazwa=$data[0][2];//nazwa z bazy
-$rozdzx=getimagesize("images/$tapeta")[0];
-$rozdzy=getimagesize("images/$tapeta")[1];
-$rozmiar=round(filesize("images/$tapeta") / 1024 / 1024,3) . 'MB';
-$datadodania=$data[0][3];//data dodania z bazy
-$opis=$data[0][4]; //opis z bazy
+<?php
+$idtapeta = $_GET['id'];
+$data = DBArrayQuery("Select tapeta.nazwapliku,kategoria.nazwa,tapeta.nazwa,tapeta.datadodania,tapeta.opis from tapeta,kategoria where tapeta.kategoria_idkategoria=kategoria.idkategoria AND idtapeta=$idtapeta;");
+$tapeta = $data[0][0]; //ściezka do pliku z bazy
+$kategoria = $data[0][1]; //kategoria z bazy
+$nazwa = $data[0][2]; //nazwa z bazy
+$rozdzx = getimagesize("images/$tapeta")[0];
+$rozdzy = getimagesize("images/$tapeta")[1];
+$rozmiar = round(filesize("images/$tapeta") / 1024 / 1024, 3) . 'MB';
+$datadodania = $data[0][3]; //data dodania z bazy
+$opis = $data[0][4]; //opis z bazy
 ?>
+
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -25,22 +25,32 @@ $opis=$data[0][4]; //opis z bazy
 </head>
 
 <body>
-    <?php require("layout/header.php") ?>
+    <?php require __DIR__ . "/layout/header.php"; ?>
     <div class="wallpapercontainer">
         <div class="wallpaperbox">
-            <img src="images/<?php echo $tapeta;?>" alt="">
+            <img src="images/<?php echo $tapeta; ?>" alt="">
             <button class="wallpaperbutton">Pobierz</button>
         </div>
         <div class="wallpaperdescriptionbox">
-            <div class="description"><b>Kategoria</b><p><?php echo $kategoria;?></p></div>
-            <div class="description"><b>Tytuł</b><p><?php echo $nazwa;?></p></div>
-            <div class="description"><p><?php echo $rozdzx;echo ' x ';echo $rozdzy;?>, <?php echo $rozmiar;?>, <?php echo $datadodania;?></p></div>
-            <div class="description"><p><?php echo $opis;?></p></div>
+            <div class="description"><b>Kategoria</b>
+                <p><?php echo $kategoria; ?></p>
+            </div>
+            <div class="description"><b>Tytuł</b>
+                <p><?php echo $nazwa; ?></p>
+            </div>
+            <div class="description">
+                <p><?php echo $rozdzx;
+                    echo ' x ';
+                    echo $rozdzy; ?>, <?php echo $rozmiar; ?>, <?php echo $datadodania; ?></p>
+            </div>
+            <div class="description">
+                <p><?php echo $opis; ?></p>
+            </div>
         </div>
     </div>
 
 
-    <?php require("layout/footer.php") ?>
+    <?php require __DIR__ . "/layout/footer.php"; ?>
 </body>
 
 </html>

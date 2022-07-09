@@ -1,4 +1,9 @@
 <?php
+session_start();
+$user = 'gubabqczps_Hubo90';
+$host = 'localhost';
+$pass = 'bE6jmXu2V3@';
+$db = "gubabqczps_Tapaper";
 
 	// =======================================
 	// funkcja zwraca wynik prostego zapytania (zwracajacego DOKLADNIE jedno pole - jak funkcja COUNT(*)
@@ -70,5 +75,3 @@
 		//die();
 		//echo '<meta http-equiv="refresh" content="0; url=error.php">';
 	}  //else echo "Connection OK!";
-	
-?>

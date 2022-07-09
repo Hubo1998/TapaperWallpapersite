@@ -1,9 +1,3 @@
-<?php 
-require_once("database/startfile.php"); 
-$idkategoria=$_GET['id'];
-$nazwakategorii=DBArrayQuery("Select kategoria.nazwa from kategoria where kategoria.idkategoria=$idkategoria;");
-$tapetykategorii=DBArrayQuery("Select tapeta.nazwapliku from tapeta where kategoria_idkategoria=$idkategoria;");
-?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -18,13 +12,18 @@ $tapetykategorii=DBArrayQuery("Select tapeta.nazwapliku from tapeta where katego
 </head>
 
 <body>
-    <?php require("layout/header.php") ?>
+    <?php 
+    require __DIR__ . "/layout/header.php";
+    $idkategoria = $_GET['id'];
+    $nazwakategorii = DBArrayQuery("Select kategoria.nazwa from kategoria where kategoria.idkategoria=$idkategoria;");
+    $tapetykategorii = DBArrayQuery("Select tapeta.nazwapliku from tapeta where kategoria_idkategoria=$idkategoria;"); 
+    ?>
     <div class="wallpapercontainerheader">
-        <?php echo $nazwakategorii[0][0];?>
+        <?php echo $nazwakategorii[0][0]; ?>
     </div>
     <div class="wallpaperscontainer">
         <?php
-        foreach($tapetykategorii as $value){
+        foreach ($tapetykategorii as $value) {
             echo "
             <div class='wallpaperbox'>
                 <a href='wallpaper.php'>
@@ -36,7 +35,7 @@ $tapetykategorii=DBArrayQuery("Select tapeta.nazwapliku from tapeta where katego
     </div>
 
 
-    <?php require("layout/footer.php") ?>
+    <?php require __DIR__ . "/layout/footer.php"; ?>
 </body>
 
 </html>
