@@ -1,4 +1,4 @@
-<?php require("functions/db.php"); ?>
+<?php require __DIR__ . "../../functions/db.php"; ?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -17,9 +17,9 @@
 
     if (hash('sha256', $haslo) == $haslozbazy) {
         $_SESSION['login'] = 'OK';
-        header("Location: index.php");
+        header("Location: /index.php");
     } else {
-        header("Location: Login.php?log=incorrect");
+        header("Location: /Login.php?log=incorrect");
     }
     ?>
 </body>

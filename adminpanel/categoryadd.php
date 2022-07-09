@@ -11,7 +11,8 @@
 </head>
 
 <body>
-    <?php require __DIR__ . "../../layout/header.php"; ?>
+    <?php require __DIR__ . "../../layout/header.php"; 
+    if($_SESSION['login']!='OK'){header("Location: /index.php");}?>
 
     <?php require __DIR__ . "../../layout/footer.php"; ?>
 </body>

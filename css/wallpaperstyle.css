@@ -41,6 +41,9 @@
     height: 26px;
     transition: 0.5s;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .wallpaperbutton:hover{
     box-shadow: black 0px 4px 15px;

@@ -15,11 +15,10 @@ session_start();
     <?php
     if ($_SESSION['login'] == 'OK') {
         $_SESSION['login'] = 'NOTOK';
-        header("Location: index.php");
+        header("Location: /index.php");
     } else {
-        header("Location: Login.php");
+        header("Location: /Login.php");
     }
-
     ?>
 </body>
 

@@ -13,7 +13,7 @@
 <body>
     <?php require __DIR__ . "/layout/header.php"; ?>
 
-    <form action="checklogin.php" method="post">
+    <form action="/supportfiles/checklogin.php" method="post">
         <div class="imgcontainer">
             <img src="images/avatar.png" alt="avatar picture" class="avatar">
         </div>

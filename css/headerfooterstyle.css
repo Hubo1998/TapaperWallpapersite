@@ -4,13 +4,15 @@
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
 }
-html{
+
+html {
     position: relative;
     min-height: 100%;
     width: 100%;
 }
-body{
-    margin:0 0 8vmin;
+
+body {
+    margin: 0 0 8vmin;
     width: 100%;
 }
 
@@ -40,7 +42,6 @@ body{
     opacity: 0.9;
     text-align: center;
     transition: all 0.3s;
-    margin-inline: 5px;
 }
 
 .loginbutton:hover {
@@ -64,9 +65,23 @@ body{
     border-radius: 15px;
     margin-inline: 10px;
 }
-.category:hover{
+
+.category:hover {
     background-color: #10678a;
 }
+
+.admincontainer {
+    height: 7vmin;
+    background-color: #61a2b9;
+    opacity: 0.8;
+}
+
+.adminbutton {
+    padding: .5em 1em;
+    border-radius: 10px;
+    margin-inline: 7px;
+}
+
 
 
 /* Stopka */
@@ -77,7 +92,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #88B0BF;
+    background-color: #61a2b9;
     opacity: 0.8;
     width: 100%;
     min-height: 7vmin;
@@ -85,9 +100,8 @@ body{
 }
 
 
-@media (max-width: 992px) 
-{
-    .topheader{
+@media (max-width: 992px) {
+    .topheader {
         height: 15vmin;
     }
 

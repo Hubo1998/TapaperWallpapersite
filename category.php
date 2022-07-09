@@ -16,7 +16,7 @@
     require __DIR__ . "/layout/header.php";
     $idkategoria = $_GET['id'];
     $nazwakategorii = DBArrayQuery("Select kategoria.nazwa from kategoria where kategoria.idkategoria=$idkategoria;");
-    $tapetykategorii = DBArrayQuery("Select tapeta.nazwapliku from tapeta where kategoria_idkategoria=$idkategoria;"); 
+    $tapetykategorii = DBArrayQuery("Select tapeta.nazwapliku,idtapeta from tapeta where kategoria_idkategoria=$idkategoria;"); 
     ?>
     <div class="wallpapercontainerheader">
         <?php echo $nazwakategorii[0][0]; ?>
@@ -26,7 +26,7 @@
         foreach ($tapetykategorii as $value) {
             echo "
             <div class='wallpaperbox'>
-                <a href='wallpaper.php'>
+                <a href='wallpaper.php?id=$value[1]'>
                     <img src='images/$value[0]' alt='' class='wallpaper'>
                 </a>
             </div>";

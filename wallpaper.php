@@ -1,16 +1,3 @@
-<?php
-$idtapeta = $_GET['id'];
-$data = DBArrayQuery("Select tapeta.nazwapliku,kategoria.nazwa,tapeta.nazwa,tapeta.datadodania,tapeta.opis from tapeta,kategoria where tapeta.kategoria_idkategoria=kategoria.idkategoria AND idtapeta=$idtapeta;");
-$tapeta = $data[0][0]; //ściezka do pliku z bazy
-$kategoria = $data[0][1]; //kategoria z bazy
-$nazwa = $data[0][2]; //nazwa z bazy
-$rozdzx = getimagesize("images/$tapeta")[0];
-$rozdzy = getimagesize("images/$tapeta")[1];
-$rozmiar = round(filesize("images/$tapeta") / 1024 / 1024, 3) . 'MB';
-$datadodania = $data[0][3]; //data dodania z bazy
-$opis = $data[0][4]; //opis z bazy
-?>
-
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -25,11 +12,26 @@ $opis = $data[0][4]; //opis z bazy
 </head>
 
 <body>
-    <?php require __DIR__ . "/layout/header.php"; ?>
+    <?php require __DIR__ . "/layout/header.php";
+    $idtapeta = $_GET['id'];
+    $data = DBArrayQuery("Select tapeta.nazwapliku,kategoria.nazwa,tapeta.nazwa,tapeta.datadodania,tapeta.opis from tapeta,kategoria where tapeta.kategoria_idkategoria=kategoria.idkategoria AND idtapeta=$idtapeta;");
+    if(!isset($data[0][0])){
+        header("Location: /index.php");
+    }else{
+        $tapeta = $data[0][0]; //ściezka do pliku z bazy
+        $kategoria = $data[0][1]; //kategoria z bazy
+        $nazwa = $data[0][2]; //nazwa z bazy
+        $rozdzx = getimagesize("images/$tapeta")[0];
+        $rozdzy = getimagesize("images/$tapeta")[1];
+        $rozmiar = round(filesize("images/$tapeta") / 1024 / 1024, 3) . 'MB';
+        $datadodania = $data[0][3]; //data dodania z bazy
+        $opis = $data[0][4]; //opis z bazy
+    }
+    ?>
     <div class="wallpapercontainer">
         <div class="wallpaperbox">
-            <img src="images/<?php echo $tapeta; ?>" alt="">
-            <button class="wallpaperbutton">Pobierz</button>
+        <?php echo "<img src='images/$tapeta' alt=''>
+            <a href='/images/$tapeta' download='$tapeta' class='wallpaperbutton'>Pobierz</a>";?>
         </div>
         <div class="wallpaperdescriptionbox">
             <div class="description"><b>Kategoria</b>
