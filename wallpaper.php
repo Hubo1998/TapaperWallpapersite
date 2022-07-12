@@ -1,3 +1,6 @@
+<?php require(__DIR__ . "/functions/dbfirst.php");
+$idtapeta = $_GET['id'];
+$headdata=DBFirstArrayQuery("Select opis,nazwa from tapeta where idtapeta=$idtapeta")?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -5,9 +8,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?php echo $headdata[0][0];?>"/>
     <link rel="stylesheet" href="css/headerfooterstyle.css" type="text/css">
     <link rel="stylesheet" href="css/wallpaperstyle.css" type="text/css">
-    <title>Tapaper</title>
+    <title><?php echo $headdata[0][1];?></title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 </head>
 

@@ -21,6 +21,10 @@
         $idadmin = $_GET['id'];
         $datadodania = $_GET['data'];
         echo "<div class='text'>Edycja użytkownika o ID = $idadmin, data dodania - $datadodania</div>";
+    } elseif ($_GET['error'] == 'numeric') {
+        echo "<div class='text'>Pola nie mogą zawierać samych liczb.</div>";
+    } elseif ($_GET['error'] == 'password') {
+        echo "<div class='text'>Hasłą muszą być takie same.</div>";
     } 
     ?>
     <form action="tableadd.php" method="POST">
@@ -42,6 +46,8 @@
             <input type='text' name='nazwa' required><br>
             <label for='haslo'>Hasło:</label>
             <input type='password' name='haslo' required><br>
+            <label for='rehaslo'>Powtórz Hasło:</label>
+            <input type='password' name='rehaslo' required><br>
             <input type='submit' value='Dodaj użytkownika'>";
         } ?>
     </form>

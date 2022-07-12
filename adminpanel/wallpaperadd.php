@@ -21,6 +21,8 @@
         $idtapeta = $_GET['id'];
         $datadodania = $_GET['data'];
         echo "<div class='text'>Edycja tapety o ID = $idtapeta, data dodania - $datadodania</div>";
+    }elseif ($_GET['error'] == 'numeric') {
+        echo "<div class='text'>Pola nie mogą zawierać samych liczb.</div>";
     }
     $kat=DBArrayQuery("Select idkategoria,nazwa from kategoria;");
     ?>

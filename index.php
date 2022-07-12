@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Serwis z darmowymi tapetami do pobrania na różnego rodzaju urządzenia"/>
+    <meta name="keywords" content="tapeta, tapety"/>
     <link rel="stylesheet" href="css/headerfooterstyle.css" type="text/css">
     <link rel="stylesheet" href="css/homepagestyle.css" type="text/css">
-    <title>Tapaper</title>
+    <title>Tapaper - Strona główna</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 </head>
 
