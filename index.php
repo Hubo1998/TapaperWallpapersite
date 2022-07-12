@@ -29,7 +29,17 @@
     </div>
     <div class="wallpapercontainerheader">Tapety o najlepszej rozdzielczości</div>
     <div class="wallpaperscontainer">
-
+        <?php
+        $data = DBArrayQuery("Select nazwapliku,idtapeta From tapeta ORDER BY wielkosc DESC LIMIT 8");
+        foreach ($data as $value) {
+            echo "
+                <div class='wallpaperbox'>
+                    <a href='wallpaper.php?id=$value[1]'>
+                        <img src='images/$value[0]' alt='' class='wallpaper'>
+                    </a>
+                </div>";
+        }
+        ?>
     </div>
 
     <?php require __DIR__ . "/layout/footer.php"; ?>

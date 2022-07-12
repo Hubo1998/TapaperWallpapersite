@@ -1,0 +1,65 @@
+.addbutton{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: #14A1D9;
+    border-radius: 15px;
+    box-sizing: content-box;
+    padding: 2vmin;
+    width: 20%;
+    margin-top: 2vmin;
+    margin-bottom: 2vmin;
+    margin-inline: auto;
+}
+table{
+    table-layout: auto;
+    text-align: center;
+    border: solid black 1px;
+    margin-inline: auto;
+    margin-top: 2vmin;
+}
+td{
+    padding: 0.5vmin 1vmin;
+}
+form{
+    margin-top: 2vmin;
+    text-align: center;
+}
+.text{
+    text-align: center;
+    margin-top: 1vmin;
+}
+.confirmcontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vmin;
+}
+.confirm{
+    margin-inline: 3vmin;
+    background-color: #14A1D9;
+    width: 10%;
+    padding: 2vmin;
+    border-radius: 15px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+}
+label, input, select,textarea{
+    margin-top: 1.5vmin;
+}
+#upload{
+    cursor: pointer;
+} 
+.editimage{
+    display: block;
+    margin-top: 2vmin;
+    margin-bottom: 2vmin;
+    margin-inline: auto;
+    max-width: 400px; 
+    max-height: 300px;
+    object-fit: contain;
+    box-shadow: 5px 5px 10px black ;
+    border-radius: 15px;
+}
