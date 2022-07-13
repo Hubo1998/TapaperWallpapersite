@@ -1,6 +1,7 @@
 <?php 
-require __DIR__ . "../../functions/db.php";
-$data=DBArrayQuery("Select * from kategoria;");
+//require __DIR__ . "../../functions/db.php";
+$stmt=DBQuery("Select * from kategoria;");
+$data=Execute($stmt);
 ?>
 <header>
     <div class="topheader">

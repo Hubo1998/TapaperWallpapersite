@@ -12,7 +12,8 @@
 </head>
 
 <body>
-    <?php require __DIR__ . "../../layout/header.php";
+    <?php require __DIR__ . "../../functions/dbfirst.php";
+    require __DIR__ . "../../layout/header.php";
     if ($_SESSION['login'] != 'OK') {
         header("Location: /index.php");
     }
@@ -24,12 +25,15 @@
     }elseif ($_GET['error'] == 'numeric') {
         echo "<div class='text'>Pola nie mogą zawierać samych liczb.</div>";
     }
-    $kat=DBArrayQuery("Select idkategoria,nazwa from kategoria;");
+    $stmt=DBQuery("Select idkategoria,nazwa from kategoria;");
+    $kat=Execute($stmt);
     ?>
     
         <?php if (isset($_GET['nazwa'])) {
             //EDYCJA
-            $data=DBArrayQuery("Select nazwa,opis,kategoria_idkategoria from tapeta where idtapeta=$idtapeta;");
+            $stmt2=DBQuery("Select nazwa,opis,kategoria_idkategoria from tapeta where idtapeta=:idtapeta;");
+            $stmt2->bindParam(':idtapeta',$idtapeta);
+            $data=Execute($stmt2);
             $nazwa=$data[0][0];
             $opis=$data[0][1];
             $idkategoria=$data[0][2];

@@ -1,6 +1,8 @@
 <?php require(__DIR__ . "/functions/dbfirst.php");
 $idtapeta = $_GET['id'];
-$headdata=DBFirstArrayQuery("Select opis,nazwa from tapeta where idtapeta=$idtapeta")?>
+$stmt=DBQuery("Select opis,nazwa from tapeta where idtapeta=:idtapeta");
+$stmt->bindParam(':idtapeta',$idtapeta);
+$headdata=Execute($stmt);?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -18,7 +20,9 @@ $headdata=DBFirstArrayQuery("Select opis,nazwa from tapeta where idtapeta=$idtap
 <body>
     <?php require __DIR__ . "/layout/header.php";
     $idtapeta = $_GET['id'];
-    $data = DBArrayQuery("Select tapeta.nazwapliku,kategoria.nazwa,tapeta.nazwa,tapeta.datadodania,tapeta.opis from tapeta,kategoria where tapeta.kategoria_idkategoria=kategoria.idkategoria AND idtapeta=$idtapeta;");
+    $stmt1 = DBQuery("Select tapeta.nazwapliku,kategoria.nazwa,tapeta.nazwa,tapeta.datadodania,tapeta.opis from tapeta,kategoria where tapeta.kategoria_idkategoria=kategoria.idkategoria AND idtapeta=:idtapeta;");
+    $stmt1->bindParam(':idtapeta',$idtapeta);
+    $data=Execute($stmt1);
     if(!isset($data[0][0])){
         header("Location: /index.php");
     }else{

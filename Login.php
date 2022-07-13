@@ -1,3 +1,4 @@
+<?php require(__DIR__ . "/functions/dbfirst.php");?>
 <!DOCTYPE html>
 <html lang="pl">
 

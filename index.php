@@ -1,3 +1,4 @@
+<?php require(__DIR__ . "/functions/dbfirst.php");?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -18,7 +19,8 @@
     <div class="wallpapercontainerheader">Najnowsze tapety</div>
     <div class="wallpaperscontainer">
         <?php
-        $data = DBArrayQuery("Select nazwapliku,idtapeta From tapeta ORDER BY datadodania DESC LIMIT 8");
+        $stmt = DBQuery("Select nazwapliku,idtapeta From tapeta ORDER BY datadodania DESC LIMIT 8");
+        $data=Execute($stmt);
         foreach ($data as $value) {
             echo "
                 <div class='wallpaperbox'>
@@ -32,7 +34,8 @@
     <div class="wallpapercontainerheader">Tapety o najlepszej rozdzielczości</div>
     <div class="wallpaperscontainer">
         <?php
-        $data = DBArrayQuery("Select nazwapliku,idtapeta From tapeta ORDER BY wielkosc DESC LIMIT 8");
+        $stmt2 = DBQuery("Select nazwapliku,idtapeta From tapeta ORDER BY wielkosc DESC LIMIT 8");
+        $data=Execute($stmt2);
         foreach ($data as $value) {
             echo "
                 <div class='wallpaperbox'>

@@ -1,4 +1,4 @@
-<?php require __DIR__ . "../../functions/db.php"; ?>
+<?php require __DIR__ . "../../functions/dbfirst.php"; ?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -13,9 +13,11 @@
     <?php
     $login = $_POST['login'];
     $haslo = $_POST['password'];
-    $haslozbazy = DBShortQuery("Select password from admin where login='$login'");
+    $stmt = DBQuery("Select password from admin where login=:login");
+    $stmt->bindParam(':login',$login);
+    $haslozbazy=Execute($stmt);
 
-    if (hash('sha256', $haslo) == $haslozbazy) {
+    if (hash('sha256', $haslo) == $haslozbazy[0][0]) {
         $_SESSION['login'] = 'OK';
         header("Location: /index.php");
     } else {

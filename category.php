@@ -1,6 +1,9 @@
 <?php require(__DIR__ . "/functions/dbfirst.php");
 $idkategoria = $_GET['id'];
-$headdata=DBFirstArrayQuery("Select nazwa from kategoria where idkategoria=$idkategoria")?>
+$stmt=DBQuery("Select nazwa from kategoria where idkategoria=:idkategoria");
+$stmt->bindParam(':idkategoria',$idkategoria);
+$headdata=Execute($stmt);
+?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -18,12 +21,12 @@ $headdata=DBFirstArrayQuery("Select nazwa from kategoria where idkategoria=$idka
 <body>
     <?php 
     require __DIR__ . "/layout/header.php";
-    $idkategoria = $_GET['id'];
-    $nazwakategorii = DBArrayQuery("Select kategoria.nazwa from kategoria where kategoria.idkategoria=$idkategoria;");
-    $tapetykategorii = DBArrayQuery("Select tapeta.nazwapliku,idtapeta from tapeta where kategoria_idkategoria=$idkategoria;"); 
+    $stmt2 = DBQuery("Select tapeta.nazwapliku,idtapeta from tapeta where kategoria_idkategoria=:idkategoria;"); 
+    $stmt2->bindParam(':idkategoria',$idkategoria);
+    $tapetykategorii=Execute($stmt2);
     ?>
     <div class="wallpapercontainerheader">
-        <?php echo $nazwakategorii[0][0]; ?>
+        <?php echo $headdata[0][0]; ?>
     </div>
     <div class="wallpaperscontainer">
         <?php

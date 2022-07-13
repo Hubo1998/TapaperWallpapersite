@@ -12,7 +12,8 @@ if(!is_numeric($nazwa)){
     if($_POST['edit']=='true'){
         if($tabela=='kategoria'){
             $fnazwa=mb_convert_case($nazwa,MB_CASE_TITLE,"UTF-8");
-            DBExecQuery("Update kategoria SET nazwa='$fnazwa' where $idtabela=$idwiersza");
+            $stmt=DBQuery("Update kategoria SET nazwa=:fnazwa where idkategoria=:idwiersza");
+            $stmt->execute(array(':fnazwa'=>$fnazwa,':idwiersza'=>$idwiersza));
             header("Location: /adminpanel/categorylist.php");
         }elseif($tabela=='admin'){
             DBExecQuery("Update admin SET login='$nazwa' where $idtabela=$idwiersza");
