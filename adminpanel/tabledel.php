@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/headerfooterstyle.css" type="text/css">
     <link rel="stylesheet" href="../css/adminpanel.css" type="text/css">
     <link rel="icon" type="image/x-icon" href="/images/admin.ico">
@@ -12,44 +13,72 @@
 </head>
 
 <body>
-    <?php require __DIR__ . "../../layout/header.php"; 
-    $id=$_GET['id'];
-    $tabela=$_GET['table'];
-    $idtabela="id".$_GET['table'];
-    if($_GET['del']=='true'){
-        DBExecQuery("Delete from $tabela where $idtabela=$id;");
-        if($tabela=='kategoria'){
-            header("Location: /adminpanel/categorylist.php");
-        }elseif($tabela=='admin'){
+    <?php require __DIR__ . "../../functions/dbfirst.php";
+    require __DIR__ . "../../layout/header.php";
+    $id = $_GET['id'];
+    $table = $_GET['table'];
+    if ($_GET['del'] == 'true') {
+        if ($table == 'kategoria') {
+            $st = DBQuery("Select * from tapeta where kategoria_idkategoria=:id;");
+            $st->bindParam(":id", $id);
+            $d = Execute($st);
+            if (count($d[0]) == 0) {
+                $stmt = DBQuery("Delete from kategoria where idkategoria=:id;");
+                $stmt->bindParam(":id", $id);
+                $stmt->execute();
+                header("Location: /adminpanel/categorylist.php");
+            }else{
+                echo "<div class='text'>W kategorii nie mogą znajdować się żadne zdjęcia.</div>";
+            }
+        } elseif ($table == 'admin') {
+            $stmt = DBQuery("Delete from admin where idadmin=:id;");
+            $stmt->bindParam(":id", $id);
+            $stmt->execute();
             header("Location: /adminpanel/userlist.php");
-        }elseif($tabela=='tapeta'){
+        } elseif ($table == 'tapeta') {
+            $stmt = DBQuery("Delete from tapeta where idtapeta=:id;");
+            $stmt->bindParam(":id", $id);
+            $stmt->execute();
             header("Location: /adminpanel/wallpaperlist.php");
         }
     }
-    $data=DBArrayQuery("Select * from $tabela where $idtabela=$id;");
+    if ($table == 'kategoria') {
+        $stmt = DBQuery("Select * from kategoria where idkategoria=:id;");
+        $stmt->bindParam(":id", $id);
+        $data = Execute($stmt);
+    } elseif ($table == 'admin') {
+        $stmt = DBQuery("Select * from admin where idadmin=:id;");
+        $stmt->bindParam(":id", $id);
+        $data = Execute($stmt);
+    } elseif ($table == 'tapeta') {
+        $stmt = DBQuery("Select * from tapeta where idtapeta=:id;");
+        $stmt->bindParam(":id", $id);
+        $data = Execute($stmt);
+    }
     echo "<div class='text'>Czy napewno chcesz usunąć rekord:</div>";
     ?>
-    <table>
+    <table class="table table-hover table-bordered">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Data dodania</th>
                 <th>Nazwa</th>
-                <?php if($tabela=='admin'){
+                <?php if ($table == 'admin') {
                     echo "<th>Hasło</th>";
-                }elseif($tabela=='tapeta'){
+                } elseif ($table == 'tapeta') {
                     echo "
                     <th>Data dodania</th>
                     <th>Kategoria</th>
-                    <th>Nazwa pliku</th>";
+                    <th>Nazwa pliku</th>
+                    <th>Wielkość w bajtach</th>";
                 }
                 ?>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <?php for($i=0;$i<count($data[0]);$i++){
-                    $text=$data[0][$i];
+                <?php for ($i = 0; $i < count($data[0]) / 2; $i++) {
+                    $text = $data[0][$i];
                     echo "<td>$text</td>";
                 }
                 ?>
@@ -57,7 +86,7 @@
         </tbody>
     </table>
     <div class="confirmcontainer">
-        <?php echo "<a class='confirm' href='tabledel.php?id=$id&table=$tabela&del=true'>Usuń</a>";?>
+        <?php echo "<a class='confirm' href='tabledel.php?id=$id&table=$table&del=true'>Usuń</a>"; ?>
         <a class="confirm" href="/index.php">Anuluj</a>
     </div>
     <?php require __DIR__ . "../../layout/footer.php"; ?>

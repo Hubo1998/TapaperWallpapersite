@@ -1,8 +1,8 @@
 <?php require(__DIR__ . "/functions/dbfirst.php");
-$idtapeta = $_GET['id'];
-$stmt=DBQuery("Select opis,nazwa from tapeta where idtapeta=:idtapeta");
-$stmt->bindParam(':idtapeta',$idtapeta);
-$headdata=Execute($stmt);?>
+$idwallpaper = $_GET['id'];
+$stmt = DBQuery("Select opis,nazwa from tapeta where idtapeta=:idtapeta");
+$stmt->bindParam(':idtapeta', $idwallpaper);
+$headdata = Execute($stmt); ?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -10,51 +10,50 @@ $headdata=Execute($stmt);?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<?php echo $headdata[0][0];?>"/>
+    <meta name="description" content="<?php echo $headdata[0][0]; ?>" />
     <link rel="stylesheet" href="css/headerfooterstyle.css" type="text/css">
     <link rel="stylesheet" href="css/wallpaperstyle.css" type="text/css">
-    <title><?php echo $headdata[0][1];?></title>
+    <title><?php echo $headdata[0][1]; ?></title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 </head>
 
 <body>
     <?php require __DIR__ . "/layout/header.php";
-    $idtapeta = $_GET['id'];
-    $stmt1 = DBQuery("Select tapeta.nazwapliku,kategoria.nazwa,tapeta.nazwa,tapeta.datadodania,tapeta.opis from tapeta,kategoria where tapeta.kategoria_idkategoria=kategoria.idkategoria AND idtapeta=:idtapeta;");
-    $stmt1->bindParam(':idtapeta',$idtapeta);
-    $data=Execute($stmt1);
-    if(!isset($data[0][0])){
+    $stmt2 = DBQuery("Select tapeta.nazwapliku,kategoria.nazwa,tapeta.nazwa,tapeta.datadodania,tapeta.opis from tapeta,kategoria where tapeta.kategoria_idkategoria=kategoria.idkategoria AND idtapeta=:idtapeta;");
+    $stmt2->bindParam(':idtapeta', $idwallpaper);
+    $data = Execute($stmt2);
+    if (!isset($data[0][0])) {
         header("Location: /index.php");
-    }else{
-        $tapeta = $data[0][0]; //ściezka do pliku z bazy
-        $kategoria = $data[0][1]; //kategoria z bazy
-        $nazwa = $data[0][2]; //nazwa z bazy
-        $rozdzx = getimagesize("images/$tapeta")[0];
-        $rozdzy = getimagesize("images/$tapeta")[1];
-        $rozmiar = round(filesize("images/$tapeta") / 1024 / 1024, 3) . 'MB';
-        $datadodania = $data[0][3]; //data dodania z bazy
-        $opis = $data[0][4]; //opis z bazy
+    } else {
+        $wallpaper = $data[0][0]; //ściezka do pliku z bazy
+        $category = $data[0][1]; //kategoria z bazy
+        $name = $data[0][2]; //nazwa z bazy
+        $resx = getimagesize("images/$wallpaper")[0];
+        $resy = getimagesize("images/$wallpaper")[1];
+        $size = round(filesize("images/$wallpaper") / 1024 / 1024, 3) . 'MB';
+        $releasedate = $data[0][3]; //data dodania z bazy
+        $description = $data[0][4]; //opis z bazy
     }
     ?>
     <div class="wallpapercontainer">
         <div class="wallpaperbox">
-        <?php echo "<img src='images/$tapeta' alt=''>
-            <a href='/images/$tapeta' download='$tapeta' class='wallpaperbutton'>Pobierz</a>";?>
+            <?php echo "<img src='images/$wallpaper' alt=''>
+            <a href='/images/$wallpaper' download='$wallpaper' class='wallpaperbutton'>Pobierz</a>"; ?>
         </div>
         <div class="wallpaperdescriptionbox">
             <div class="description"><b>Kategoria</b>
-                <p><?php echo $kategoria; ?></p>
+                <p><?php echo $category; ?></p>
             </div>
             <div class="description"><b>Tytuł</b>
-                <p><?php echo $nazwa; ?></p>
+                <p><?php echo $name; ?></p>
             </div>
             <div class="description">
-                <p><?php echo $rozdzx;
+                <p><?php echo $resx;
                     echo ' x ';
-                    echo $rozdzy; ?>, <?php echo $rozmiar; ?>, <?php echo $datadodania; ?></p>
+                    echo $resy; ?>, <?php echo $size; ?>, <?php echo $releasedate; ?></p>
             </div>
             <div class="description">
-                <p><?php echo $opis; ?></p>
+                <p><?php echo $description; ?></p>
             </div>
         </div>
     </div>

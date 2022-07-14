@@ -5,20 +5,26 @@ $host = 'localhost';
 $pass = 'bE6jmXu2V3@';
 $db = "gubabqczps_Tapaper";
 
-function DBQuery($sql){
+function DBQuery($sql)
+{
     global $conn;
-    $stmt=$conn->prepare($sql);
+    $stmt = $conn->prepare($sql);
+    if(!$stmt){
+        echo "\nPDO::errorInfo():\n";
+        print_r($conn->errorInfo());
+    }
     return $stmt;
 }
-function Execute($st){
-    $st->execute();
-    $data=$st->fetchAll();
-    return $data;
+function Execute($st)
+{
+        $st->execute();
+        $data = $st->fetchAll();
+        return $data;
 }
 
-try{
-    $conn = new PDO("mysql:host=$host;dbname=$db;charset=utf8",$user,$pass);
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}catch(PDOException $e) {
+} catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
-  }
+}

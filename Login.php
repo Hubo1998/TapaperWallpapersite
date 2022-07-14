@@ -13,7 +13,11 @@
 </head>
 
 <body>
-    <?php require __DIR__ . "/layout/header.php"; ?>
+    <?php require __DIR__ . "/layout/header.php"; 
+    if($_GET['log']=='incorrect'){
+        echo '<script>alert("Niepoprawne dane logowania")</script>';
+    }
+    ?>
 
     <form action="/supportfiles/checklogin.php" method="post">
         <div class="imgcontainer">

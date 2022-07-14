@@ -40,6 +40,9 @@
         grid-template-columns: 1fr 1fr 1fr;
         row-gap: 4vmin;
     }
+    .wallpaperbox:nth-child(n+7){
+        display: none;
+    }
     
 }
 
@@ -48,6 +51,15 @@
     .wallpaperscontainer{
         grid-template-columns: 1fr 1fr;
     }
+
+}
+
+@media (max-width: 576px) 
+{
+    .wallpaperscontainer{
+        grid-template-columns: 1fr;
+    }
+    
 
 }
 

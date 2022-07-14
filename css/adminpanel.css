@@ -1,3 +1,4 @@
+
 .addbutton{
     display: block;
     text-align: center;
@@ -62,4 +63,17 @@ label, input, select,textarea{
     object-fit: contain;
     box-shadow: 5px 5px 10px black ;
     border-radius: 15px;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    color:white;
+}
+.formbox{
+    width: 40%;
+    margin-inline: auto;
+}
+button{
+    margin-top: 3vmin;
 }

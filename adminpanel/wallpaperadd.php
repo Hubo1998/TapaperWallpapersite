@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/headerfooterstyle.css" type="text/css">
     <link rel="stylesheet" href="../css/adminpanel.css" type="text/css">
     <link rel="icon" type="image/x-icon" href="/images/admin.ico">
@@ -18,64 +19,70 @@
         header("Location: /index.php");
     }
     if (isset($_GET['nazwa'])) {
-        $nazwapliku = $_GET['nazwa'];
-        $idtapeta = $_GET['id'];
-        $datadodania = $_GET['data'];
-        echo "<div class='text'>Edycja tapety o ID = $idtapeta, data dodania - $datadodania</div>";
+        $filename = $_GET['nazwa'];
+        $idwallpaper = $_GET['id'];
+        $releasedate = $_GET['data'];
+        echo "<div class='text'>Edycja tapety o ID = $idwallpaper, data dodania - $releasedate</div>";
     }elseif ($_GET['error'] == 'numeric') {
         echo "<div class='text'>Pola nie mogą zawierać samych liczb.</div>";
+    }elseif ($_GET['error'] == 'name') {
+        echo "<div class='text'>Tapeta o takiej nazwie już istnieje.</div>";
+    }elseif ($_GET['error'] == 'size') {
+        echo "<div class='text'>Plik jest zbyt duży.</div>";
+    }elseif ($_GET['error'] == 'len') {
+        echo "<div class='text'>Nazwa pliku jest zbyt długa.</div>";
     }
     $stmt=DBQuery("Select idkategoria,nazwa from kategoria;");
-    $kat=Execute($stmt);
+    $cat=Execute($stmt);
     ?>
     
         <?php if (isset($_GET['nazwa'])) {
             //EDYCJA
             $stmt2=DBQuery("Select nazwa,opis,kategoria_idkategoria from tapeta where idtapeta=:idtapeta;");
-            $stmt2->bindParam(':idtapeta',$idtapeta);
+            $stmt2->bindParam(':idtapeta',$idwallpaper);
             $data=Execute($stmt2);
-            $nazwa=$data[0][0];
-            $opis=$data[0][1];
-            $idkategoria=$data[0][2];
-            echo "
+            $name=$data[0][0];
+            $description=$data[0][1];
+            $categoryid=$data[0][2];
+            echo "<div class='formbox'>
             <form action='tableadd.php' method='POST' enctype='multipart/form-data'>
-            <img class='editimage' src='/images/$nazwapliku' alt=''>
+            <img class='editimage' src='/images/$filename' alt=''>
             <input type='hidden' name='edit' value='true'>
             <input type='hidden' name='table' value='tapeta'>
-            <input type='hidden' name='id' value='$idtapeta'>
-            <label for='kategorie'>Kategoria:</label>
-            <select id='kategorie' name='kategorie'>";
-            foreach($kat as $value){
-                if($value[0]==$idkategoria){
+            <input type='hidden' name='id' value='$idwallpaper'>
+            <label for='kategorie' class='form-label'>Kategoria:</label>
+            <select id='kategorie' name='kategorie' class='form-control'>";
+            foreach($cat as $value){
+                if($value[0]==$categoryid){
                     echo "<option value='$value[0]' selected>$value[1]</option>";
                 }else{
                     echo "<option value='$value[0]'>$value[1]</option>";
                 }
             }
             echo "</select><br>
-            <label for='nazwa'>Nazwa tapety:</label>
-            <input type='text' name='nazwa' value='$nazwa'><br>
-            <label for='opis'>Opis:</label>
-            <textarea name='opis' id='opis' maxlength='250' rows='5' cols='25'>$opis</textarea><br>
-            <input type='submit' value='Edytuj tapetę'>";
+            <label for='nazwa' class='form-label'>Nazwa tapety:</label>
+            <input type='text' name='nazwa' value='$name' class='form-control'><br>
+            <label for='opis' class='form-label'>Opis:</label>
+            <textarea name='opis' id='opis' maxlength='250' rows='5' cols='25' class='form-control'>$description</textarea><br>
+            <button type='submit' class='btn btn-primary'>Edytuj tapetę</button></div>";
         } else {
             
             //DODAWANIE
-            echo "
+            echo "<div class='formbox'>
             <form action='upload.php' method='POST' enctype='multipart/form-data'>
-            <label for='upload'>Dodaj tapetę</label><br>
-            <input type='file' id='upload' name='upload' accept='image/png, image/jpeg, image/jpg' required><br>
-            <label for='kategorie'>Wybierz kategorię:</label>
-            <select id='kategorie' name='kategorie'>";
-            foreach($kat as $value){
+            <label for='upload' class='form-label'>Dodaj tapetę:</label><br>
+            <input type='file' id='upload' name='upload' accept='image/png, image/jpeg, image/jpg' class='form-label-file' required><br>
+            <label for='kategorie' class='form-label'>Wybierz kategorię:</label>
+            <select id='kategorie' name='kategorie' class='form-control'>";
+            foreach($cat as $value){
                 echo "<option value='$value[0]'>$value[1]</option>";
             }
             echo "</select><br>
-            <label for='nazwa'>Nazwa tapety:</label>
-            <input type='text' id='nazwa' name='nazwa' required><br>
-            <label for='opis'>Opis:</label>
-            <textarea name='opis' id='opis' maxlength='250' rows='5' cols='25'></textarea><br>
-            <input type='submit' value='Dodaj tapetę'>";
+            <label for='nazwa' class='form-label'>Nazwa tapety:</label>
+            <input type='text' id='nazwa' name='nazwa' required class='form-control'><br>
+            <label for='opis' class='form-label'>Opis:</label>
+            <textarea name='opis' id='opis' maxlength='250' rows='5' cols='25' class='form-control'></textarea><br>
+            <button type='submit' class='btn btn-primary'>Dodaj tapetę</button></div>";
         } ?>
         
     </form>
