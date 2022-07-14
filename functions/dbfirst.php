@@ -7,19 +7,32 @@ $db = "gubabqczps_Tapaper";
 
 function DBQuery($sql)
 {
-    global $conn;
-    $stmt = $conn->prepare($sql);
-    if(!$stmt){
-        echo "\nPDO::errorInfo():\n";
-        print_r($conn->errorInfo());
+    try {
+        global $conn;
+        $stmt = $conn->prepare($sql);
+        if($stmt){
+            return $stmt;
+        }else {
+            echo "Błąd zapytania";
+        }
+    } catch (PDOException $e) {
+        echo "Wystąpił błąd z pobieraniem danych:" . $e->getMessage();
     }
-    return $stmt;
 }
 function Execute($st)
 {
-        $st->execute();
-        $data = $st->fetchAll();
-        return $data;
+    try {
+        $result = $st->execute();
+        if ($result) {
+            $data = $st->fetchAll();
+        } else {
+            $error = $st->errorInfo();
+            echo "Błąd zapytania:" . $error[2];
+        }
+    } catch (PDOException $e) {
+        echo "Wystąpił błąd z pobieraniem danych:" . $e->getMessage();
+    }
+    return $data;
 }
 
 try {
