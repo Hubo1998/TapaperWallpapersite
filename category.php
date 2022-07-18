@@ -1,4 +1,5 @@
 <?php require(__DIR__ . "/functions/dbfirst.php");
+require(__DIR__ . "/functions/functions.php");
 $idcategory = $_GET['id'];
 $stmt=DBQuery("Select nazwa from kategoria where idkategoria=:idkategoria");
 $stmt->bindParam(':idkategoria',$idcategory);
@@ -30,14 +31,7 @@ $headdata=Execute($stmt);
     </div>
     <div class="wallpaperscontainer">
         <?php
-        foreach ($categorieswallpapers as $value) {
-            echo "
-            <div class='wallpaperbox'>
-                <a href='wallpaper.php?id=$value[1]'>
-                    <img src='images/$value[0]' alt='' class='wallpaper'>
-                </a>
-            </div>";
-        }
+        showWallpapers($categorieswallpapers);
         ?>
     </div>
 

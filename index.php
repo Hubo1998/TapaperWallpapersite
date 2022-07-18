@@ -1,4 +1,5 @@
-<?php require(__DIR__ . "/functions/dbfirst.php");?>
+<?php require(__DIR__ . "/functions/dbfirst.php");
+require(__DIR__ . "/functions/functions.php");?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -21,14 +22,7 @@
         <?php
         $stmt = DBQuery("Select nazwapliku,idtapeta From tapeta ORDER BY datadodania DESC LIMIT 8");
         $data=Execute($stmt);
-        foreach ($data as $value) {
-            echo "
-                <div class='wallpaperbox'>
-                    <a href='wallpaper.php?id=$value[1]'>
-                        <img src='images/$value[0]' alt='' class='wallpaper'>
-                    </a>
-                </div>";
-        }
+        showWallpapers($data);
         ?>
     </div>
     <div class="wallpapercontainerheader">Tapety o najlepszej rozdzielczości</div>
@@ -36,14 +30,7 @@
         <?php
         $stmt2 = DBQuery("Select nazwapliku,idtapeta From tapeta ORDER BY wielkosc DESC LIMIT 8");
         $data=Execute($stmt2);
-        foreach ($data as $value) {
-            echo "
-                <div class='wallpaperbox'>
-                    <a href='wallpaper.php?id=$value[1]'>
-                        <img src='images/$value[0]' alt='' class='wallpaper'>
-                    </a>
-                </div>";
-        }
+        showWallpapers($data);
         ?>
     </div>
 

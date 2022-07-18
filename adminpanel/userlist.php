@@ -14,6 +14,7 @@
 
 <body>
     <?php require __DIR__ . "../../functions/dbfirst.php";
+    require(__DIR__ . "../../functions/functions.php");
     require __DIR__ . "../../layout/header.php";
     if ($_SESSION['login'] != 'OK') {
         header("Location: /index.php");
@@ -22,33 +23,8 @@
     <?php
     $stmt = DBQuery("Select * from admin;");
     $data=Execute($stmt);
-    ?>
-    <table class="table table-hover table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Data dodania</th>
-                <th>Login</th>
-                <th>Edycja</th>
-                <th>Usuwanie</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($data as $value) {
-                echo "
-                <tr>
-                    <td>$value[0]</td>
-                    <td>$value[1]</td>
-                    <td>$value[2]</td>
-                    <td><a href='useradd.php?id=$value[0]&data=$value[1]&nazwa=$value[2]'>Edytuj</a></td>
-                    <td><a href='tabledel.php?id=$value[0]&table=admin'>Usuń</a></td>
-                </tr>";
-            };
-            ?>
-        </tbody>
-    </table>
-    <?php require __DIR__ . "../../layout/footer.php"; ?>
+    showTable($data,"admin");
+    require __DIR__ . "../../layout/footer.php"; ?>
 </body>
 
 </html>
