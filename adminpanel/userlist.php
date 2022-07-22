@@ -21,9 +21,7 @@
     } ?>
     <a href="useradd.php" class="addbutton">Dodaj nowego administratora</a>
     <?php
-    $stmt = DBQuery("Select * from admin;");
-    $data = Execute($stmt);
-    showTable($data, "admin");
+    getList("admin");
     require __DIR__ . "../../layout/footer.php"; ?>
 </body>
 

@@ -1,8 +1,9 @@
 <?php
+require __DIR__ . "../../functions/dbfirst.php";
+require(__DIR__ . "../../functions/functions.php");
 $name = $_POST['name'];
 $description = $_POST['description'];
 $idcategory = $_POST['categories'];
-require __DIR__ . "../../functions/dbfirst.php";
 echo $_FILES['upload']['tmp_name'];
 if (is_uploaded_file($_FILES['upload']['tmp_name'])) {
     $uploadwallpaper = $_FILES['upload']['name'];

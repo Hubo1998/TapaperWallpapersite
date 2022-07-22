@@ -21,9 +21,7 @@
     } ?>
     <a href="wallpaperadd.php" class="addbutton">Dodaj nową tapetę</a>
     <?php
-    $stmt = DBQuery("Select idwallpaper,dateadd,filename from wallpaper;");
-    $data = Execute($stmt);
-    showTable($data, "wallpaper");
+    getList("wallpaper");
     require __DIR__ . "../../layout/footer.php"; ?>
 </body>
 

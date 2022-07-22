@@ -1,4 +1,5 @@
-<?php require(__DIR__ . "/functions/dbfirst.php");?>
+<?php require(__DIR__ . "/functions/dbfirst.php");
+require(__DIR__ . "/functions/functions.php");?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -9,6 +10,7 @@
     <meta name="description" content="Strona logowania do panelu administracyjnego."/>
     <link rel="stylesheet" href="css/headerfooterstyle.css" type="text/css">
     <link rel="stylesheet" href="css/loginstyle.css" type="text/css">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <title>Login Page</title>
 </head>
 

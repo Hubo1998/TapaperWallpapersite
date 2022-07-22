@@ -1,7 +1,5 @@
 <?php 
-//require __DIR__ . "../../functions/db.php";
-$stmt=DBQuery("Select * from category;");
-$data=Execute($stmt);
+$data=getCategories();
 ?>
 <header>
     <div class="topheader">
@@ -21,7 +19,7 @@ $data=Execute($stmt);
     <div class="categoriescontainer">
         <?php
         foreach($data as $value){
-            echo "<a href='/category.php?id=$value[0]' class='category'>$value[1]</a>";
+            echo "<a href='/category.php?id=$value[0]' class='category'>$value[2]</a>";
         }
         ?>
     </div>

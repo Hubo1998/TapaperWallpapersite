@@ -14,6 +14,7 @@
 
 <body>
     <?php require __DIR__ . "../../functions/dbfirst.php";
+    require(__DIR__ . "../../functions/functions.php");
     require __DIR__ . "../../layout/header.php";
     $id = $_GET['id'];
     $table = $_GET['table'];

@@ -1,4 +1,5 @@
 <?php
+require(__DIR__ . "../../functions/functions.php");
 require __DIR__ . "../../functions/dbfirst.php";
 $table = $_POST['table'];
 $name = $_POST['name'];
@@ -66,7 +67,7 @@ if (!is_numeric($name)) {
                 }
             }
             if ($var == 0) {
-                $stmt = DBQuery("Insert INTO category VALUES(null,:fname,current_timestamp())");
+                $stmt = DBQuery("Insert INTO category VALUES(null,current_timestamp(),:fname)");
                 $stmt->bindParam(":fname", $finalname);
                 $stmt->execute();
                 header("Location: /adminpanel/categorylist.php");

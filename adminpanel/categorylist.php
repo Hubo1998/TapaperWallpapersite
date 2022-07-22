@@ -21,9 +21,7 @@
     } ?>
     <a href="categoryadd.php" class="addbutton">Dodaj nową kategorię</a>
     <?php
-    $stmt=DBQuery("Select * from category;");
-    $data=Execute($stmt);
-    showTable($data,"category");
+    getList("category");
     require __DIR__ . "../../layout/footer.php"; ?>
 </body>
 

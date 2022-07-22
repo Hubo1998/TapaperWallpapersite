@@ -1,8 +1,7 @@
 <?php require(__DIR__ . "/functions/dbfirst.php");
+require(__DIR__ . "/functions/functions.php");
 $idwallpaper = $_GET['id'];
-$stmt = DBQuery("Select description,name from wallpaper where idwallpaper=:idwallpaper");
-$stmt->bindParam(':idwallpaper', $idwallpaper);
-$headdata = Execute($stmt); ?>
+$wallpaperdata=getWallpaper($idwallpaper); ?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -10,29 +9,26 @@ $headdata = Execute($stmt); ?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<?php echo $headdata[0][0]; ?>" />
+    <meta name="description" content="<?php echo $wallpaperdata[0][4]; ?>" />
     <link rel="stylesheet" href="css/headerfooterstyle.css" type="text/css">
     <link rel="stylesheet" href="css/wallpaperstyle.css" type="text/css">
-    <title><?php echo $headdata[0][1]; ?></title>
+    <title><?php echo $wallpaperdata[0][2]; ?></title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 </head>
 
 <body>
     <?php require __DIR__ . "/layout/header.php";
-    $stmt2 = DBQuery("Select wallpaper.filename,category.name,wallpaper.name,wallpaper.dateadd,wallpaper.description from wallpaper,category where wallpaper.category_idcategory=category.idcategory AND idwallpaper=:idwallpaper;");
-    $stmt2->bindParam(':idwallpaper', $idwallpaper);
-    $data = Execute($stmt2);
-    if (!isset($data[0][0])) {
+    if (!isset($wallpaperdata[0][0])) {
         header("Location: /index.php");
     } else {
-        $wallpaper = $data[0][0]; //ściezka do pliku z bazy
-        $category = $data[0][1]; //category z bazy
-        $name = $data[0][2]; //name z bazy
+        $wallpaper = $wallpaperdata[0][0]; //ściezka do pliku z bazy
+        $category = $wallpaperdata[0][1]; //kategoria z bazy
+        $name = $wallpaperdata[0][2]; //nazwa z bazy
         $resx = getimagesize("images/$wallpaper")[0];
         $resy = getimagesize("images/$wallpaper")[1];
         $size = round(filesize("images/$wallpaper") / 1024 / 1024, 3) . 'MB';
-        $releasedate = $data[0][3]; //data dodania z bazy
-        $description = $data[0][4]; //description z bazy
+        $releasedate = $wallpaperdata[0][3]; //wallpaperdata dodania z bazy
+        $description = $wallpaperdata[0][4]; //opis z bazy
     }
     ?>
     <div class="wallpapercontainer">

@@ -106,6 +106,10 @@ body {
         height: 15vmin;
     }
 
+    .admincontainer {
+        height: 12vmin;
+    }
+
     .topheader {
         height: 15vmin;
     }
@@ -113,32 +117,37 @@ body {
 
 }
 
-@media (max-width: 768px) 
-{
+@media (max-width: 768px) {
     .categoriescontainer {
         height: 20vmin;
+        font-size: 16px;
+    }
+    .admincontainer{
+        height: 15vmin;
     }
 
 }
 
 @media (max-width: 576px) {
-    
+
 
     .categoriescontainer {
         height: 25vmin;
     }
+
     .admincontainer {
-        height: 10vmin;
+        height: 18vmin;
     }
 
     .category {
         padding: 0.8em 1.6em;
     }
-    
-    .headerlogo img{
+
+    .headerlogo img {
         width: 100px;
         height: 50px;
     }
+
     .loginbutton {
         padding: 0.25em 1em;
         font-size: 13px;

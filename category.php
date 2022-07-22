@@ -1,9 +1,7 @@
 <?php require(__DIR__ . "/functions/dbfirst.php");
 require(__DIR__ . "/functions/functions.php");
 $idcategory = $_GET['id'];
-$stmt=DBQuery("Select nazwa from category where idcategory=:idcategory");
-$stmt->bindParam(':idcategory',$idcategory);
-$headdata=Execute($stmt);
+$categorywallpapers=getCategoryWallpapers($idcategory);
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -15,23 +13,20 @@ $headdata=Execute($stmt);
     <meta name="description" content="Strona kategorii, wyświetla wszystkie zdjęcia z danej kategorii."/>
     <link rel="stylesheet" href="css/headerfooterstyle.css" type="text/css">
     <link rel="stylesheet" href="css/homepagestyle.css" type="text/css">
-    <title>Tapaper - <?php echo $headdata[0][0];?></title>
+    <title>Tapaper - <?php echo $categorywallpapers[0][2];?></title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 </head>
 
 <body>
     <?php 
     require __DIR__ . "/layout/header.php";
-    $stmt2 = DBQuery("Select wallpaper.filename,idwallpaper from wallpaper where category_idcategory=:idcategory;"); 
-    $stmt2->bindParam(':idcategory',$idcategory);
-    $categorieswallpapers=Execute($stmt2);
     ?>
     <div class="wallpapercontainerheader">
-        <?php echo $headdata[0][0]; ?>
+        <?php echo $categorywallpapers[0][2]; ?>
     </div>
     <div class="wallpaperscontainer">
         <?php
-        showWallpapers($categorieswallpapers);
+        showWallpapers($categorywallpapers);
         ?>
     </div>
 

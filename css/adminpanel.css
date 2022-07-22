@@ -1,4 +1,3 @@
-
 .addbutton{
     display: block;
     text-align: center;
@@ -8,7 +7,7 @@
     border-radius: 15px;
     box-sizing: content-box;
     padding: 2vmin;
-    width: 20%;
+    width: 21%;
     margin-top: 2vmin;
     margin-bottom: 2vmin;
     margin-inline: auto;
@@ -76,4 +75,41 @@ a:hover{
 }
 button{
     margin-top: 3vmin;
+}
+@media (max-width: 992px) {
+    .addbutton{
+        width: 40%;
+    }
+}
+@media (max-width: 768px) 
+{
+    .formbox{
+        width: 60%;
+    }
+    .addbutton{
+        font-size: 16px;
+        width: 37%;
+    }
+    table{
+        font-size: 12px;
+    }
+
+}
+
+@media (max-width: 576px) {
+    .formbox{
+        box-sizing: content-box;
+        width: 85%;
+        font-size: 13px;
+        overflow: hidden;
+        padding: 5vmin;
+    }
+
+    .addbutton{
+        font-size: 14px;
+        width: 55%;
+    }
+    table{
+        font-size: 11px;
+    }
 }
