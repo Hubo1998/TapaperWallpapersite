@@ -18,12 +18,12 @@
     $id = $_GET['id'];
     $table = $_GET['table'];
     if ($_GET['del'] == 'true') {
-        if ($table == 'kategoria') {
-            $st = DBQuery("Select * from tapeta where kategoria_idkategoria=:id;");
+        if ($table == 'category') {
+            $st = DBQuery("Select * from wallpaper where category_idcategory=:id;");
             $st->bindParam(":id", $id);
             $d = Execute($st);
             if (count($d[0]) == 0) {
-                $stmt = DBQuery("Delete from kategoria where idkategoria=:id;");
+                $stmt = DBQuery("Delete from category where idcategory=:id;");
                 $stmt->bindParam(":id", $id);
                 $stmt->execute();
                 header("Location: /adminpanel/categorylist.php");
@@ -35,23 +35,23 @@
             $stmt->bindParam(":id", $id);
             $stmt->execute();
             header("Location: /adminpanel/userlist.php");
-        } elseif ($table == 'tapeta') {
-            $stmt = DBQuery("Delete from tapeta where idtapeta=:id;");
+        } elseif ($table == 'wallpaper') {
+            $stmt = DBQuery("Delete from wallpaper where idwallpaper=:id;");
             $stmt->bindParam(":id", $id);
             $stmt->execute();
             header("Location: /adminpanel/wallpaperlist.php");
         }
     }
-    if ($table == 'kategoria') {
-        $stmt = DBQuery("Select * from kategoria where idkategoria=:id;");
+    if ($table == 'category') {
+        $stmt = DBQuery("Select * from category where idcategory=:id;");
         $stmt->bindParam(":id", $id);
         $data = Execute($stmt);
     } elseif ($table == 'admin') {
         $stmt = DBQuery("Select * from admin where idadmin=:id;");
         $stmt->bindParam(":id", $id);
         $data = Execute($stmt);
-    } elseif ($table == 'tapeta') {
-        $stmt = DBQuery("Select * from tapeta where idtapeta=:id;");
+    } elseif ($table == 'wallpaper') {
+        $stmt = DBQuery("Select * from wallpaper where idwallpaper=:id;");
         $stmt->bindParam(":id", $id);
         $data = Execute($stmt);
     }
@@ -65,7 +65,7 @@
                 <th>Nazwa</th>
                 <?php if ($table == 'admin') {
                     echo "<th>Hasło</th>";
-                } elseif ($table == 'tapeta') {
+                } elseif ($table == 'wallpaper') {
                     echo "
                     <th>Data dodania</th>
                     <th>Kategoria</th>

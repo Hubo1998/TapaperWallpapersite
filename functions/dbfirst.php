@@ -5,6 +5,14 @@ $host = 'localhost';
 $pass = 'bE6jmXu2V3@';
 $db = "gubabqczps_Tapaper";
 
+
+/**
+ * Preparation of query for database
+ * 
+ * @param string $sql
+ * This is SQL query which specifies what kind of data we want to get from our database.
+ */
+
 function DBQuery($sql)
 {
     try {
@@ -19,6 +27,15 @@ function DBQuery($sql)
         echo "Wystąpił błąd z pobieraniem danych:" . $e->getMessage();
     }
 }
+
+
+
+/**
+ * Execution of prepared statement, then fetching and returning data
+ * 
+ * @param object $st
+ * prepared PDOStatement with binded params if needed
+ */
 function Execute($st)
 {
     try {

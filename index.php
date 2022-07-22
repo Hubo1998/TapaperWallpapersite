@@ -20,17 +20,13 @@ require(__DIR__ . "/functions/functions.php");?>
     <div class="wallpapercontainerheader">Najnowsze tapety</div>
     <div class="wallpaperscontainer">
         <?php
-        $stmt = DBQuery("Select nazwapliku,idtapeta From tapeta ORDER BY datadodania DESC LIMIT 8");
-        $data=Execute($stmt);
-        showWallpapers($data);
+        getHomePageWallpapers("dateadd");
         ?>
     </div>
     <div class="wallpapercontainerheader">Tapety o najlepszej rozdzielczości</div>
     <div class="wallpaperscontainer">
         <?php
-        $stmt2 = DBQuery("Select nazwapliku,idtapeta From tapeta ORDER BY wielkosc DESC LIMIT 8");
-        $data=Execute($stmt2);
-        showWallpapers($data);
+        getHomePageWallpapers("filesize");
         ?>
     </div>
 

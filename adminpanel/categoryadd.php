@@ -18,38 +18,38 @@
     if ($_SESSION['login'] != 'OK') {
         header("Location: /index.php");
     }
-    if (isset($_GET['nazwa'])) {
-        $text = $_GET['nazwa'];
+    if (isset($_GET['name'])) {
+        $text = $_GET['name'];
         $idcategory = $_GET['id'];
-        $releasedate = $_GET['data'];
+        $releasedate = $_GET['date'];
         echo "<div class='text'>Edycja kategorii o ID = $idcategory, data dodania - $releasedate</div>";
         if ($_GET['error'] == 'name') {
-            echo "<div class='text'>Już istnieje taka nazwa kategorii.</div>";
+            echo "<div class='text'>Już istnieje taka name kategorii.</div>";
         }
     } elseif ($_GET['error'] == 'numeric') {
         echo "<div class='text'>Nazwa kategorii nie może zawierać samych liczb.</div>";
     } elseif ($_GET['error'] == 'name') {
-        echo "<div class='text'>Już istnieje taka nazwa kategorii.</div>";
+        echo "<div class='text'>Już istnieje taka name kategorii.</div>";
     }
     ?>
     <form action="tableadd.php" method="POST">
-        <?php if (isset($_GET['nazwa'])) {
+        <?php if (isset($_GET['name'])) {
             //EDYCJA
             echo "<div class='formbox'>
             <input type='hidden' name='edit' value='true'>
-            <input type='hidden' name='table' value='kategoria'>
-            <input type='hidden' name='column' value='nazwa'>
+            <input type='hidden' name='table' value='category'>
+            <input type='hidden' name='column' value='name'>
             <input type='hidden' name='id' value='$idcategory'>
             <input type='hidden' name='date' value='$releasedate'>
-            <label for='nazwa' class='form-label'>Nazwa kategorii:</label>
-            <input type='text' id='nazwa' name='nazwa' value='$text' class='form-control'>
+            <label for='name' class='form-label'>Nazwa kategorii:</label>
+            <input type='text' id='name' name='name' value='$text' class='form-control'>
             <button type='submit' class='btn btn-primary'>Edytuj kategorię</button></div>";
         } else {
             //DODAWANIE
             echo "<div class='formbox'>
-            <input type='hidden' name='table' value='kategoria'>
-            <label for='nazwa' class='form-label'>Nazwa kategorii:</label>
-            <input type='text' name='nazwa' class='form-control' required>
+            <input type='hidden' name='table' value='category'>
+            <label for='name' class='form-label'>Nazwa kategorii:</label>
+            <input type='text' name='name' class='form-control' required>
             <button type='submit' class='btn btn-primary'>Dodaj kategorię</button></div>";
         } ?>
 

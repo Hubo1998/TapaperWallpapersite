@@ -1,7 +1,7 @@
 <?php require(__DIR__ . "/functions/dbfirst.php");
 $idwallpaper = $_GET['id'];
-$stmt = DBQuery("Select opis,nazwa from tapeta where idtapeta=:idtapeta");
-$stmt->bindParam(':idtapeta', $idwallpaper);
+$stmt = DBQuery("Select description,name from wallpaper where idwallpaper=:idwallpaper");
+$stmt->bindParam(':idwallpaper', $idwallpaper);
 $headdata = Execute($stmt); ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -19,20 +19,20 @@ $headdata = Execute($stmt); ?>
 
 <body>
     <?php require __DIR__ . "/layout/header.php";
-    $stmt2 = DBQuery("Select tapeta.nazwapliku,kategoria.nazwa,tapeta.nazwa,tapeta.datadodania,tapeta.opis from tapeta,kategoria where tapeta.kategoria_idkategoria=kategoria.idkategoria AND idtapeta=:idtapeta;");
-    $stmt2->bindParam(':idtapeta', $idwallpaper);
+    $stmt2 = DBQuery("Select wallpaper.filename,category.name,wallpaper.name,wallpaper.dateadd,wallpaper.description from wallpaper,category where wallpaper.category_idcategory=category.idcategory AND idwallpaper=:idwallpaper;");
+    $stmt2->bindParam(':idwallpaper', $idwallpaper);
     $data = Execute($stmt2);
     if (!isset($data[0][0])) {
         header("Location: /index.php");
     } else {
         $wallpaper = $data[0][0]; //ściezka do pliku z bazy
-        $category = $data[0][1]; //kategoria z bazy
-        $name = $data[0][2]; //nazwa z bazy
+        $category = $data[0][1]; //category z bazy
+        $name = $data[0][2]; //name z bazy
         $resx = getimagesize("images/$wallpaper")[0];
         $resy = getimagesize("images/$wallpaper")[1];
         $size = round(filesize("images/$wallpaper") / 1024 / 1024, 3) . 'MB';
         $releasedate = $data[0][3]; //data dodania z bazy
-        $description = $data[0][4]; //opis z bazy
+        $description = $data[0][4]; //description z bazy
     }
     ?>
     <div class="wallpapercontainer">

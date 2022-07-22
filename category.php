@@ -1,8 +1,8 @@
 <?php require(__DIR__ . "/functions/dbfirst.php");
 require(__DIR__ . "/functions/functions.php");
 $idcategory = $_GET['id'];
-$stmt=DBQuery("Select nazwa from kategoria where idkategoria=:idkategoria");
-$stmt->bindParam(':idkategoria',$idcategory);
+$stmt=DBQuery("Select nazwa from category where idcategory=:idcategory");
+$stmt->bindParam(':idcategory',$idcategory);
 $headdata=Execute($stmt);
 ?>
 <!DOCTYPE html>
@@ -22,8 +22,8 @@ $headdata=Execute($stmt);
 <body>
     <?php 
     require __DIR__ . "/layout/header.php";
-    $stmt2 = DBQuery("Select tapeta.nazwapliku,idtapeta from tapeta where kategoria_idkategoria=:idkategoria;"); 
-    $stmt2->bindParam(':idkategoria',$idcategory);
+    $stmt2 = DBQuery("Select wallpaper.filename,idwallpaper from wallpaper where category_idcategory=:idcategory;"); 
+    $stmt2->bindParam(':idcategory',$idcategory);
     $categorieswallpapers=Execute($stmt2);
     ?>
     <div class="wallpapercontainerheader">

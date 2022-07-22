@@ -18,24 +18,24 @@
     if ($_SESSION['login'] != 'OK') {
         header("Location: /index.php");
     }
-    if (isset($_GET['nazwa'])) {
-        $text = $_GET['nazwa'];
+    if (isset($_GET['name'])) {
+        $text = $_GET['name'];
         $idadmin = $_GET['id'];
-        $releasedate = $_GET['data'];
+        $releasedate = $_GET['date'];
         echo "<div class='text'>Edycja użytkownika o ID = $idadmin, data dodania - $releasedate</div>";
-        if($_GET['error'] == 'login'){
+        if ($_GET['error'] == 'login') {
             echo "<div class='text'>Istnieje już użytkownik o takiej nazwie.</div>";
         }
     } elseif ($_GET['error'] == 'numeric') {
         echo "<div class='text'>Pola nie mogą zawierać samych liczb.</div>";
     } elseif ($_GET['error'] == 'password') {
         echo "<div class='text'>Hasłą muszą być takie same.</div>";
-    } elseif($_GET['error'] == 'login'){
+    } elseif ($_GET['error'] == 'login') {
         echo "<div class='text'>Istnieje już użytkownik o takiej nazwie.</div>";
     }
     ?>
     <form action="tableadd.php" method="POST">
-        <?php if (isset($_GET['nazwa'])) {
+        <?php if (isset($_GET['name'])) {
             //EDYCJA
             echo "<div class='formbox'>
             <input type='hidden' name='edit' value='true'>
@@ -43,19 +43,19 @@
             <input type='hidden' name='column' value='login'>
             <input type='hidden' name='id' value='$idadmin'>
             <input type='hidden' name='date' value='$releasedate'>
-            <label for='nazwa' class='form-label'>Nazwa użytkownika:</label>
-            <input type='text' id='nazwa' name='nazwa' value='$text' class='form-control'>
+            <label for='name' class='form-label'>Nazwa użytkownika:</label>
+            <input type='text' id='name' name='name' value='$text' class='form-control'>
             <button type='submit' class='btn btn-primary'>Edytuj login</button></div>";
         } else {
             //DODAWANIE
             echo "<div class='formbox'>
             <input type='hidden' name='table' value='admin'>
-            <label for='nazwa' class='form-label'>Nazwa użytkownika:</label>
-            <input type='text' id='nazwa' name='nazwa' class='form-control' required><br>
-            <label for='haslo' class='form-label'>Hasło:</label>
-            <input type='password' id='haslo' name='haslo' class='form-control' required><br>
-            <label for='rehaslo' class='form-label'>Powtórz Hasło:</label>
-            <input type='password' id='rehaslo' name='rehaslo' class='form-control' required><br>
+            <label for='name' class='form-label'>Nazwa użytkownika:</label>
+            <input type='text' id='name' name='name' class='form-control' required><br>
+            <label for='password' class='form-label'>Hasło:</label>
+            <input type='password' id='password' name='password' class='form-control' required><br>
+            <label for='repassword' class='form-label'>Powtórz Hasło:</label>
+            <input type='password' id='repassword' name='repassword' class='form-control' required><br>
             <button type='submit' class='btn btn-primary'>Dodaj użytkownika</button></div>";
         } ?>
     </form>

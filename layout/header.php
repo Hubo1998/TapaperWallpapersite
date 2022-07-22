@@ -1,6 +1,6 @@
 <?php 
 //require __DIR__ . "../../functions/db.php";
-$stmt=DBQuery("Select * from kategoria;");
+$stmt=DBQuery("Select * from category;");
 $data=Execute($stmt);
 ?>
 <header>
